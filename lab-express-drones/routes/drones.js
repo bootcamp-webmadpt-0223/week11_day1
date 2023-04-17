@@ -10,8 +10,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/create', (req, res, next) => {
-  // Iteration #3: Add a new drone
-  // ... your code here
+  res.render('drones/create-form')
 });
 
 router.get('/:id', async (req, res, next) => {
@@ -20,8 +19,9 @@ router.get('/:id', async (req, res, next) => {
   res.render('drones/detail', { drone });
 });
 
-router.post('/create', (req, res, next) => {
-  
+router.post('/create', async (req, res, next) => {
+  await Drone.create(req.body)
+  res.redirect('/drones');
 });
 
 router.get('/:id/edit', (req, res, next) => {

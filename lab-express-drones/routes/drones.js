@@ -37,19 +37,15 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.get("/:id/edit", async (req, res, next) => {
-  // Iteration #4: Update the drone
-  // ... your code here
   const { id } = req.params;
   const drone = await Drone.findById(id);
+  res.render("drones/update-form", { drone });
 });
 
 router.post("/:id/edit", async (req, res, next) => {
-  // Iteration #4: Update the drone
-  // ... your code here
   const { id } = req.params;
-  const updatedDron = req.body;
-  await Drone.findByIdAndUpdate(id, updatedDron);
-  res.redirect(`/drones/${id}`);
+  await Drone.findByIdAndUpdate(id, req.body);
+  res.redirect("/drones");
 });
 
 router.post("/:id/delete", async (req, res, next) => {

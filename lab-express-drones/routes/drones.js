@@ -5,35 +5,29 @@ const router = express.Router();
 // require the Drone model here
 
 router.get("/", async (req, res, next) => {
-  // Drone.find()
-  // .then(drones => {
-
-  // })
   const drones = await Drone.find();
   res.render("drones/list", { drones });
 });
 
-router.get("/create", async (req, res, next) => {
-  // Iteration #3: Add a new drone
-  // ... your code here
+router.get("/create", (req, res, next) => {
   res.render("drones/create-form");
 });
 
-router.post("/create", async (req, res) => {
-  const { name, maxSpeed, propellers } = req.body;
-  await Drone.create({ name, maxSpeed, propellers });
-  res.redirect("/drones");
-});
-
 router.get("/:id", async (req, res, next) => {
-  // const id = req.params.id;
   const { id } = req.params;
-  // Drone.findById(id)
-  // .then(drone => {
-  //   res.render('drones/detail', { drone })
-  // })
   const drone = await Drone.findById(id);
   res.render("drones/detail", { drone });
+});
+
+router.post("/create", async (req, res, next) => {
+  console.log(req.body);
+  // const newData = req.body;
+  // Drone.create(newData)
+  // .then(() => {
+  //   res.redirect('/drones');
+  // })
+  await Drone.create(req.body);
+  res.redirect("/drones");
 });
 
 router.get("/:id/edit", async (req, res, next) => {
@@ -49,8 +43,6 @@ router.post("/:id/edit", async (req, res, next) => {
 });
 
 router.post("/:id/delete", async (req, res, next) => {
-  // Iteration #5: Delete the drone
-  // ... your code here
   const { id } = req.params;
   await Drone.findByIdAndDelete(id);
   res.redirect("/drones");

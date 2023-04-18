@@ -1,0 +1,8 @@
+<h1>CONSOLAS</h1>
+{{#each consolas}}
+<h5>{{name}}</h5>
+<a href="/consolas/{{_id}}">View details</a>
+<form action="/consolas/{{_id}}/delete" method="post">
+    <button type="submit">Delete</button>
+</form>
+{{/each}}

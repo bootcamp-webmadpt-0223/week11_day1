@@ -1,0 +1,9 @@
+<h2>Available dog</h2>
+{{#each dog}}
+  <div>
+    <h5>{{name}}</h5>
+    <a href="/dog/{{_id}}">See details</a>
+    <form action="/dog/{{_id}}/delete" method="POST">
+    <button type="submit">Delete</button></form>
+  </div>
+{{/each}}

@@ -31,6 +31,9 @@ app.use('/', index);
 const droneRoutes = require('./routes/drones')
 app.use('/drones', droneRoutes)
 
+const dogRoutes = require('./routes/dog')
+app.use('/dog', dogRoutes)
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
 

@@ -3,5 +3,7 @@
   <div>
     <h5>{{name}}</h5>
     <a href="/drones/{{_id}}">See details</a>
+    <form action="/drones/{{_id}}/delete" method="POST">
+    <button type="submit">Delete</button></form>
   </div>
 {{/each}}

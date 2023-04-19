@@ -1,6 +1,6 @@
 const express = require('express');
 const Drone = require('../models/Drone.model');
-// const Review = require('../models/Review.model');
+const Review = require('../models/Review.model');
 const router = express.Router();
 
 // require the Drone model here
@@ -16,7 +16,8 @@ router.get('/create', (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params;
-  const drone = await Drone.findById(id)
+  const drone = await Drone.findById(id).populate('reviews')
+  console.log('Drone', drone)
   res.render('drones/detail', { drone });
 });
 
